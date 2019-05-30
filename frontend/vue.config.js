@@ -14,6 +14,7 @@ glob.sync('./src/pages/**/app.js').forEach(path => {
 })
 
 module.exports = {
+  assetsDir: 'static',  // 指定`build`时,在静态文件上一层添加static目录
   pages,
   chainWebpack: config => config.plugins.delete('named-chunks'),
   devServer: {
