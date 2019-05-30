@@ -54,7 +54,8 @@
 </template>
 
 <script>
-import { Form, Button, Input, Icon } from 'ant-design-vue'
+import { Form, Button, Input, Icon, message } from 'ant-design-vue'
+import axios from 'axios'
 
 function hasErrors (fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field])
@@ -91,14 +92,24 @@ export default {
       const { getFieldError, isFieldTouched } = this.form
       return isFieldTouched('password') && getFieldError('password')
     },
-    handleSubmit  (e) {
+    handleSubmit (e) {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values)  // eslint-disable-line
+          this.login(values.userName, values.password)
         }
       })
     },
+    async login (username, password) {
+
+      let { data: { status, message: msg } } = await axios.post('/api/account/login/', {username, password})
+      if (status !== 'success') {
+        message.error(msg)
+      } else {
+        window.location = '/user/'
+      }
+    }
   },
 }
 </script>
