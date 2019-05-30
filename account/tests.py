@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from account.models import User
 
 
@@ -66,3 +66,43 @@ class GetUserInfoTestCase(BaseTestCase):
         self.assertIsInstance(resp, JsonResponse)
         data = resp.json()
         self.assertEqual(data['status'], 'success')
+
+
+class LoginPageViewTestCase(BaseTestCase):
+
+    def setUp(self):
+        return super().setUp()
+
+    def test_get_login_page(self):
+        c = Client()
+        resp = c.get(reverse('login_page'))
+        self.assertIsInstance(resp, HttpResponse)
+        self.assertEqual(resp.status_code, 200)
+
+
+class UserPageViewTestCase(BaseTestCase):
+
+    def setUp(self):
+        return super().setUp()
+
+    def test_get_user_page_without_login(self):
+        # login
+        c = Client()
+        # self.login(c, self.username, self.password)
+        resp = c.get(reverse('user_page'))
+        self.assertIsInstance(resp, HttpResponse)
+        self.assertRedirects(
+            resp,
+            reverse('login_page'),
+            status_code=302,
+            target_status_code=200,
+            fetch_redirect_response=True,
+        )
+
+    def test_get_user_page_after_login(self):
+        # login
+        c = Client()
+        self.login(c, self.username, self.password)
+        resp = c.get(reverse('user_page'))
+        self.assertIsInstance(resp, HttpResponse)
+        self.assertEqual(resp.status_code, 200)

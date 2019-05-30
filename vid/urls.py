@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
+from account.views import UserPageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # views
-    path('login/', TemplateView.as_view(template_name='login.html')),
+    path('login/', TemplateView.as_view(template_name='login.html'), name='login_page'),
+    path('user/', UserPageView.as_view(), name='user_page'),
     # apis
     path('api/account/', include('account.urls')),
 ]
