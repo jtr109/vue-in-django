@@ -286,11 +286,11 @@ Now you can view the login and user pages corresponding url, such as `localhost:
 
 Login page:
 
-![image-20190529202025524](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190529202025524.png)
+![image-20190529202025524](./intergrate-vue-in-django.assets/image-20190529202025524.png)
 
 User page:
 
-![image-20190529202405290](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190529202405290.png)
+![image-20190529202405290](./intergrate-vue-in-django.assets/image-20190529202405290.png)
 
 ## Inject Vue Page Into Django Template
 
@@ -338,7 +338,7 @@ TEMPLATES = [
 
 After Changing template path, the login view works well. But we find the static files is not found. 
 
-![image-20190529205044695](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190529205044695.png)
+![image-20190529205044695](./intergrate-vue-in-django.assets/image-20190529205044695.png)
 
 We setting `assetsDir` as `'static'` in `vue.config.js` will ask vue-cli to build all assets in the same directory `frontend/dist/static`.
 
@@ -370,7 +370,7 @@ yarn run build
 
 After that, all files can be load correctly.
 
-![image-20190529210423475](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190529210423475.png)
+![image-20190529210423475](./intergrate-vue-in-django.assets/image-20190529210423475.png)
 
 ### Render User Page
 
@@ -404,7 +404,7 @@ urlpatterns = [
 
 Let us try browsing the URL of user page (usually `localhost:8000/user`). Focus on the network tracks. We can see the request is redirected to the login page because we did not log in.
 
-![image-20190530095235106](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190530095235106.png)
+![image-20190530095235106](./intergrate-vue-in-django.assets/image-20190530095235106.png)
 
 ## Create a Login Form in User Page
 
@@ -541,7 +541,7 @@ export default {
 
 Now we have a login form.
 
-![image-20190530115347454](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190530115347454.png)
+![image-20190530115347454](./intergrate-vue-in-django.assets/image-20190530115347454.png)
 
 ### Using Axios to Send Login Request
 
@@ -604,7 +604,7 @@ export default {
 
 You will find CSRF token error.
 
-![image-20190530143518162](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190530143518162.png)
+![image-20190530143518162](./intergrate-vue-in-django.assets/image-20190530143518162.png)
 
 I do not find a better way to resolve it. Let disable CSRF token middleware until we find a solution.
 
@@ -634,7 +634,7 @@ Out[2]: <User: john>
 
 And now we can use the account on vue service (usually `localhost:8080/login/`) go to the user page (usually `localhost:8080/user/`).
 
-![image-20190530150502432](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190530150502432.png)
+![image-20190530150502432](./intergrate-vue-in-django.assets/image-20190530150502432.png)
 
 ### Rebuild Frontend and Have A Try in Django Service
 
@@ -647,7 +647,7 @@ yarn run build
 
 Now we can login and see the user page (`localhost:8000/user/`).
 
-![image-20190530153935383](/Users/jtr109/mystuff/self_learning/vid/doc/intergrate-vue-in-django.assets/image-20190530153935383.png)
+![image-20190530153935383](./intergrate-vue-in-django.assets/image-20190530153935383.png)
 
 
 
